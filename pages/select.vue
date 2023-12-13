@@ -1,4 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+
+const timetable = useTimetableStore();
+
+onMounted(async () => {
+  for (let course of timetable.timetable) {
+    console.log(course);
+  }
+});
+
+const updateTimetable = async () => {
+  await timetable.fetchTimetable();
+};
+
+await updateTimetable();
+</script>
 
 <template>
   <div class="w-full h-full p-4">
